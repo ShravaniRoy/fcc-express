@@ -21,7 +21,7 @@ app.get('/', function(req, res){ //serving a file
 
 app.get('/json', function(req, res){ //manipulating res using env var
     let msg = "Hello json";
-    res.send({"message": process.env.MESSAGE_STYLE === 'uppercase'?msg.toUpperCase():msg.toLowerCase()});
+    res.json({"message": process.env.MESSAGE_STYLE === 'uppercase'?msg.toUpperCase():msg.toLowerCase()});
 })
 
 
