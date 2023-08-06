@@ -19,9 +19,18 @@ app.get('/', function(req, res){ //serving a file
 //     res.send({"message": "Hello json"});
 // })
 
+// app.get('/json', function(req, res){ //manipulating res using env var
+//     let msg = "Hello json";
+//     res.json({"message": process.env.MESSAGE_STYLE === 'uppercase'?msg.toUpperCase():msg.toLowerCase()});
+// })
+
+//as the above snippet isn't getting through test cases, using below approach
 app.get('/json', function(req, res){ //manipulating res using env var
-    let msg = "Hello json";
-    res.json({"message": process.env.MESSAGE_STYLE === 'uppercase'?msg.toUpperCase():msg.toLowerCase()});
+    if(process.env.MESSAGE_STYLE === 'uppercase'){
+        res.json({"message":"Hello json".toUpperCase()});
+    } else {
+        res.json({"message":"Hello json".toLowerCase()});
+    }
 })
 
 
