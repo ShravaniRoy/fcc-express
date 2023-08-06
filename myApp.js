@@ -26,7 +26,7 @@ app.get('/', function(req, res){ //serving a file
 
 //as the above snippet isn't getting through test cases, using below approach
 app.get('/json', function(req, res){ //manipulating res using env var
-    if(process.env.MESSAGE_STYLE === 'uppercase'){
+    if(process.env['MESSAGE_STYLE'] === 'uppercase'){
         res.json({"message":"Hello json".toUpperCase()});
     } else {
         res.json({"message":"Hello json".toLowerCase()});
