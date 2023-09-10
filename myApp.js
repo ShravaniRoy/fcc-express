@@ -1,4 +1,5 @@
-const dotenv = require('dotenv').config({ path: './.env' });
+require('dotenv').config();
+// const dotenv = require('dotenv').config({ path: './.env' });
 let express = require('express');
 let app = express();
 
@@ -7,7 +8,7 @@ let app = express();
 // app.get('/', function(req, res){
 //     res.send("Hello Express");
 // })
-
+const mySecret = process.env['MESSAGE_STYLE'];
 app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){ //serving a file
@@ -27,9 +28,9 @@ app.get('/', function(req, res){ //serving a file
 //as the above snippet isn't getting through test cases, using below approach
 app.get('/json', function(req, res){ //manipulating res using env var
     if(process.env['MESSAGE_STYLE'] === 'uppercase'){
-        res.json({"message":"Hello json".toUpperCase()});
+        return res.json({"message":"Hello json".toUpperCase()});
     } else {
-        res.json({"message":"Hello json".toLowerCase()});
+        return res.json({"message":"Hello json".toLowerCase()});
     }
 })
 
