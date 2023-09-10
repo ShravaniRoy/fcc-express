@@ -7,11 +7,15 @@ let app = express();
 // app.get('/', function(req, res){
 //     res.send("Hello Express");
 // })
+// --> 7)  Mount the Logger middleware here
+app.use((req, res, next) => {
 
-app.use(function(req, res, next) {
-    console.log(req.method+ ' '+ req.path + ' - ' + req.ip);
-    next();
-  });
+    let string = `${req.method} ${req.path} - ${req.ip}`
+    console.log(string) 
+      
+     next();
+   
+   });
 
 //as the above snippet isn't getting through test cases, using below approach
 app.get('/json', function(req, res){ //manipulating res using env var
