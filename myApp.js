@@ -8,6 +8,11 @@ let app = express();
 //     res.send("Hello Express");
 // })
 
+app.use(function(req, res, next) {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+  })
+
 //as the above snippet isn't getting through test cases, using below approach
 app.get('/json', function(req, res){ //manipulating res using env var
     if(process.env['MESSAGE_STYLE'] === 'uppercase'){
@@ -17,7 +22,8 @@ app.get('/json', function(req, res){ //manipulating res using env var
     }
 })
 
-app.use('/public', express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public')); 
+//path - /public here as first arg optional. When not found middleware gets exe for all requests
 
 app.get('/', function(req, res){ //serving a file
     absolutePath = __dirname + '/views/index.html'
